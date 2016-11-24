@@ -1,0 +1,9 @@
+FROM ubuntu:16.04
+ADD ./apt-pref /bootstrap/apt-pref
+RUN apt-get update && \
+    apt-get -y install apt-transport-https software-properties-common && \
+    add-apt-repository -y "deb https://clusterhq-archive.s3.amazonaws.com/ubuntu/$(lsb_release --release --short)/\$(ARCH) /" && \
+    mv /bootstrap/apt-pref /etc/apt/preferences.d/buildbot-700 && \
+    apt-get update && \
+    apt-get -y install --force-yes clusterhq-flocker-cli
+

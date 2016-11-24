@@ -1,0 +1,5 @@
+FROM debian:jessie-slim
+RUN apt-get update && apt-get -y install gcc libffi-dev libssl-dev python2.7 python2.7-dev python-pip && \
+    pip install --upgrade pip && \
+    pip install markupsafe https://clusterhq-archive.s3.amazonaws.com/python/Flocker-1.15.0-py2-none-any.whl
+CMD flocker-ca --version
